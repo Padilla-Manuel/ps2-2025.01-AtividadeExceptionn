@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import br.dev.joaquim.bank.BankAccount;
+import br.dev.joaquim.bank.InsufficientFundsException;
 
 public class UserInterface {
     private Scanner input = new Scanner(System.in);
@@ -69,10 +70,14 @@ public class UserInterface {
     }
 
     private void withdraw() {
-        System.out.print("\nInforme o valor a ser sacado: ");
+        System.out.print("Informe o valor a ser sacado: ");
         double value = readValue();
-        account.withdraw(value); // pode dar problema
-        System.out.println("Saque realizado com sucesso");
+        try {
+            account.withdraw(value);
+            System.out.println("Saque realizado com sucesso.");
+        } catch (IllegalArgumentException | InsufficientFundsException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     private int readOption() {

@@ -1,56 +1,81 @@
+/**
+ * Documentando Trabalho
+ * Esta classe é a conta bancária
+ * @see java.lang.Object
+ * @author Manuel Padilla
+ * @version 1.0
+ */
+
+
 package br.dev.joaquim.bank;
 
+/**
+ * Atributos da Conta Bancaria 
+ * accountNumber
+ * balance
+ * accountHolderName
+ * @see java.lang.Object
+ * @author Manuel Padilla
+ * @version 1.0
+ */
 public class BankAccount {
-  private int accountNumber;
-  private double balance;
-  private String accountHolderName;
+    private int accountNumber;
+    private double balance;
+    private String accountHolderName;
 
-  public BankAccount( ) {
-  }
 
-  public BankAccount(int accountNumber, double balance, String accountHolderName) {
-    this.accountNumber = accountNumber;
-    this.balance = balance;
-    this.accountHolderName = accountHolderName;
-  }
-
-  public int getAccountNumber() {
-    return accountNumber;
-  }
-
-  public double getBalance() {
-    return balance;
-  }
-
-  public String getAccountHolderName() {
-    return accountHolderName;
-  }
-
-  public void deposit(double value) {
-
-    if (value < 0) {
-      throw new IllegalArgumentException("O valor precisa ser positivo, foi informado o valor R$ " + value);
+/**
+ * Aqui criamos um construtor
+ * @author Manuel Padilla
+ * @version 1.0
+ */
+    public BankAccount(int accountNumber, double balance, String accountHolderName) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.accountHolderName = accountHolderName;
     }
 
-    this.balance += value;
-  }
-
-  public void withdraw(double value) {
-
-    if (value < 0) {
-      throw new IllegalArgumentException("O valor precisa ser positivo, foi informado o valor R$ " + value);
+/**
+ * Os set's e get's dos atributos
+ * @author Manuel Padilla
+ * @version 1.0
+ */
+    public int getAccountNumber() {
+        return accountNumber;
     }
 
-    if (value > this.balance) {
-      // Não deveria ser assim, não pode ter print a classe
-      System.out.println("O valor R$ " + value + " é superior ao saldo [R$ " + this.balance + "]");
+    public double getBalance() {
+        return balance;
     }
 
-    this.balance -= value;
-  }
+    public String getAccountHolderName() {
+        return accountHolderName;
+    }
 
-  @Override
-  public String toString() {
-    return "Conta " + accountNumber + " de " + accountHolderName + " têm R$ " + balance + " de saldo";
-  }
+    public void deposit(double value) {
+        if (value < 0) {
+            throw new IllegalArgumentException("O valor precisa ser positivo, foi informado R$ " + value);
+        }
+        this.balance += value;
+    }
+
+    public void withdraw(double value) throws InsufficientFundsException {
+        if (value < 0) {
+            throw new IllegalArgumentException("O valor precisa ser positivo, foi informado R$ " + value);
+        }
+        if (value > this.balance) {
+            throw new InsufficientFundsException(value, this.balance);
+        }
+        this.balance -= value;
+    }
+/**
+ * Colocando Override
+ * @author Manuel Padilla
+ * @see java.lang.Object
+ * @version 1.0
+ */
+    @Override
+    public String toString() {
+        return "Conta " + accountNumber + " de " + accountHolderName + " tem R$ " + balance + " de saldo";
+    }
 }
