@@ -5,7 +5,12 @@ import java.util.Scanner;
 
 import br.dev.joaquim.bank.BankAccount;
 import br.dev.joaquim.bank.InsufficientFundsException;
-
+/**
+* Aqui incializamos a interface do usuário que vai ser visto na tela
+* @author Manuel Padilla
+* @see java.lang.Object
+* @version 1.0
+*/
 public class UserInterface {
     private Scanner input = new Scanner(System.in);
     private BankAccount account;
@@ -18,7 +23,12 @@ public class UserInterface {
         System.out.println("Criamos uma conta com o número: " + accountNumber + ", com saldo igual a 0 (zero).");
         this.account = new BankAccount(accountNumber, 0, holderName);
     }
-
+/**
+* Menu Principal
+* @author Manuel Padilla
+* @see java.lang.Object
+* @version 1.0
+*/
     private void showMenu() {
         System.out.println("\n\n-----------------------");
         System.out.println("Escolha uma das opções:");
@@ -46,7 +56,7 @@ public class UserInterface {
                         deposit();
                         break;
                     case 3:
-                        withdraw(); // pode dar problema
+                        withdraw(); 
                         break;
                     case 4:
                         System.out.println("Até a próxima.");

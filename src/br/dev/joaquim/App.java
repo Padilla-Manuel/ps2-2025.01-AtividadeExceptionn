@@ -1,11 +1,12 @@
+/**
+* Classe App
+* @author Manuel Padilla
+* @see java.lang.Object
+* @version 1.0
+*/
 package br.dev.joaquim;
 
 public class App {
-  /**
-   * Método principal que inicializa a interface do usuário
-   * 
-   * @param args nenhum argumento é requerido para a execução
-   */
   public static void main(String[] args) {
     UserInterface main = new UserInterface();
     main.start(   );
